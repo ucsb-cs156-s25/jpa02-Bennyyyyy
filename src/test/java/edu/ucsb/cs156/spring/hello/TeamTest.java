@@ -19,8 +19,39 @@ public class TeamTest {
        assert(team.getName().equals("test-team"));
     }
 
-   
-    // TODO: Add additional tests as needed to get to 100% jacoco line coverage, and
-    // 100% mutation coverage (all mutants timed out or killed)
+    @Test
+    public void toString_returns_correct_string() {
+        assertEquals("Team(name=test-team, members=[])", team.toString());
+    } 
 
+    @Test
+    public void equals_returns_false_for_different_names() {
+        Team t1 = new Team("team1");
+        Team t2 = new Team("team2");
+        boolean result = t1.equals(t2);
+        assert(!result);
+    }   
+
+    @Test
+    public void equals_returns_true_for_same_team() {
+        Team t1 = new Team("team1");
+        boolean result = t1.equals(t1);
+        assert(result);
+    }
+
+    @Test
+    public void equals_returns_false_for_different_object() {
+        Team t1 = new Team("team1");
+        String str = "not a team";
+        boolean result = t1.equals(str);
+        assert(!result);
+    }
+
+    @Test
+    public void hashcode_returns_correctly() {
+        Team t = new Team();
+        int result = t.hashCode();
+        int expectedResult = 1;
+        assertEquals(expectedResult, result);
+    }
 }
